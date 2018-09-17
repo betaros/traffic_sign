@@ -87,7 +87,7 @@ class Misc:
             folders += len(dirnames)
         return folders
 
-    def download_files(self, images=True, haar=False):
+    def download_pos_files(self, images=True, haar=False):
         """
         Downloads and extracts the datasets selected
         :param images:
@@ -141,7 +141,28 @@ class Misc:
             else:
                 self.logger.debug("Skip downloading %s", file)
 
-    def manipulate_image(self):
+    def download_neg_files(self):
+        """
+        Downloading negative sample files
+        :return:
+        """
+        link = ""
+
+    def download_face_recognition_haar(self):
+        link = "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml"
+        store = os.path.join(self.project_root, "dataset", "haarcascade_frontalface_default.xml")
+
+        if not os.path.isfile(store):
+            try:
+                self.logger.debug("Downloading files to %s", store)
+                urllib.request.urlretrieve(link, store)
+                self.logger.debug("Finished downloading")
+            except (urllib.request.HTTPError, urllib.request.URLError):
+                self.logger.error("Unable to download data")
+        else:
+            self.logger.debug("Skip downloading haarcascade_frontalface_default.xml")
+
+    def manipulate_image(self, positive=False):
         """
         Modifies images to gray scale and resize it
         :return:
@@ -158,7 +179,11 @@ class Misc:
             for file_name in file_names:
                 if file_name.endswith(".ppm"):
                     img = cv2.imread(os.path.join(dir_path, file_name), cv2.IMREAD_GRAYSCALE)
-                    resized_image = cv2.resize(img, (100, 100))
+                    if positive:
+                        dim = 50
+                    else:
+                        dim = 100
+                    resized_image = cv2.resize(img, (dim, dim))
                     resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2BGR)
                     try:
                         int(dir_path[-5:])
@@ -177,3 +202,30 @@ class Misc:
         :return:
         """
         return 1
+
+    def get_camera_image(self, mirror=True):
+        """
+
+        :return:
+        """
+        self.logger.debug("Show cam")
+
+        face_cascade = cv2.CascadeClassifier(os.path.join(self.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
+
+        cam = cv2.VideoCapture(0)
+        while True:
+            ret_val, img = cam.read()
+            if mirror:
+                img = cv2.flip(img, 1)
+            # img = cv2.resize(img, (960, 540))
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in faces:
+                cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                # roi_gray = gray[y:y+h, x:x+w]
+                # roi_color = img[y:y + h, x:x + w]
+
+            cv2.imshow('my webcam', img)
+            if cv2.waitKey(1) == 27:
+                break  # esc to quit
+        cv2.destroyAllWindows()

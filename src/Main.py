@@ -36,11 +36,16 @@ class Main:
             os.makedirs(dataset_path)
 
         # Getting the files
-        self.misc.download_files(images=True, haar=True)
-        self.misc.manipulate_image()
+        self.misc.download_pos_files(images=True, haar=True)
+        self.misc.manipulate_image(positive=True)
+
+        self.misc.download_face_recognition_haar()
 
         # training = Training()
         # training.train_system()
+
+        self.misc.get_camera_image()
+
         self.misc.logger.debug("Program finished")
 
 
