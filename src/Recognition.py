@@ -4,6 +4,7 @@ Last edited:    10.09.2018
 """
 import cv2
 import logging
+import os
 
 from Misc import Misc
 
@@ -15,6 +16,54 @@ class Recognition:
 
         self.misc = Misc()
 
-    def detect(self):
-        self.logger.debug("")
+    def face_recognition(self):
+        """
+        Sample cascade to detect faces
+        """
+        cascade = cv2.CascadeClassifier(
+            os.path.join(self.misc.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
+        self.get_camera_image(cascade, "Face")
+
+    def get_camera_image(self, cascade, message, mirror=True):
+        """
+        Shows live images with marked detections
+        """
+        self.logger.debug("Show cam")
+
+        cam = cv2.VideoCapture(0)
+        while True:
+            ret_val, img = cam.read()
+            if mirror:
+                img = cv2.flip(img, 1)
+            # img = cv2.resize(img, (960, 540))
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            faces = cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in faces:
+                cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                self.write_text_on_image(img, message, (x, y-5))
+                # roi_gray = gray[y:y+h, x:x+w]
+                # roi_color = img[y:y + h, x:x + w]
+
+            cv2.imshow('Webcam', img)
+            if cv2.waitKey(1) == 27:
+                break  # esc to quit
+        cv2.destroyAllWindows()
+
+        self.logger.debug("Exit cam")
+
+    @staticmethod
+    def write_text_on_image(img, message, bottom_left_corner_of_text=(10, 500)):
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 1
+        font_color = (0, 255, 0)
+        line_type = 2
+
+        cv2.putText(img, message,
+                    bottom_left_corner_of_text,
+                    font,
+                    font_scale,
+                    font_color,
+                    line_type)
+
+
 

@@ -11,6 +11,7 @@ Last edited:    10.09.2018
 import os
 
 from Misc import Misc
+from Recognition import Recognition
 from Training import Training
 
 
@@ -22,6 +23,8 @@ class Main:
     """
     def __init__(self):
         self.misc = Misc()
+        self.recognition = Recognition()
+        self.training = Training()
 
     def run(self):
         """
@@ -41,10 +44,10 @@ class Main:
 
         self.misc.download_face_recognition_haar()
 
-        # training = Training()
-        # training.train_system()
+        # self.training.train_system()
 
-        self.misc.get_camera_image()
+        # Get camera image and find traffic signs
+        self.recognition.face_recognition()
 
         self.misc.logger.debug("Program finished")
 
