@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -46,6 +54,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_recognition_1_1_recognition.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,14 +85,10 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_recognition.html">Recognition</a></li><li class="navelem"><a class="el" href="class_recognition_1_1_recognition.html">Recognition</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_recognition_1_1_recognition-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -77,31 +98,168 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2f7707bf1fc057ae30c41baefbd7bf38"><td class="memItemLeft" align="right" valign="top"><a id="a2f7707bf1fc057ae30c41baefbd7bf38"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self)</td></tr>
+<tr class="memitem:a2f7707bf1fc057ae30c41baefbd7bf38"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_recognition_1_1_recognition.html#a2f7707bf1fc057ae30c41baefbd7bf38">__init__</a> (self)</td></tr>
 <tr class="separator:a2f7707bf1fc057ae30c41baefbd7bf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1a6506383bb5321b7eb186a7617dfe7"><td class="memItemLeft" align="right" valign="top"><a id="af1a6506383bb5321b7eb186a7617dfe7"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>detect</b> (self)</td></tr>
-<tr class="separator:af1a6506383bb5321b7eb186a7617dfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3d9ab0e9c708246660b8a6300eb852"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_recognition_1_1_recognition.html#a8c3d9ab0e9c708246660b8a6300eb852">face_recognition</a> (self)</td></tr>
+<tr class="separator:a8c3d9ab0e9c708246660b8a6300eb852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0901488f10a3806c8ebbdff92043b3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_recognition_1_1_recognition.html#a8d0901488f10a3806c8ebbdff92043b3">get_camera_image</a> (self, cascade, message, mirror=True)</td></tr>
+<tr class="separator:a8d0901488f10a3806c8ebbdff92043b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a5b3081b9a48c136f1397cd17dce89c37"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_recognition_1_1_recognition.html#a5b3081b9a48c136f1397cd17dce89c37">write_text_on_image</a> (img, message, bottom_left_corner_of_text=(10, 500))</td></tr>
+<tr class="separator:a5b3081b9a48c136f1397cd17dce89c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7c450f93080f7f5bbcf4c69aabf20489"><td class="memItemLeft" align="right" valign="top"><a id="a7c450f93080f7f5bbcf4c69aabf20489"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
-<tr class="separator:a7c450f93080f7f5bbcf4c69aabf20489"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b6d17e10f916f8a158eaef600005bbc"><td class="memItemLeft" align="right" valign="top"><a id="a6b6d17e10f916f8a158eaef600005bbc"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>misc</b></td></tr>
 <tr class="separator:a6b6d17e10f916f8a158eaef600005bbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">This class handles the
+</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2f7707bf1fc057ae30c41baefbd7bf38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7707bf1fc057ae30c41baefbd7bf38">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Recognition.Recognition.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialising
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8c3d9ab0e9c708246660b8a6300eb852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3d9ab0e9c708246660b8a6300eb852">&#9670;&nbsp;</a></span>face_recognition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Recognition.Recognition.face_recognition </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Sample cascade to detect faces
+</pre> 
+</div>
+</div>
+<a id="a8d0901488f10a3806c8ebbdff92043b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0901488f10a3806c8ebbdff92043b3">&#9670;&nbsp;</a></span>get_camera_image()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Recognition.Recognition.get_camera_image </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>cascade</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mirror</em> = <code>True</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Shows live images with marked detections
+</pre> 
+</div>
+</div>
+<a id="a5b3081b9a48c136f1397cd17dce89c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3081b9a48c136f1397cd17dce89c37">&#9670;&nbsp;</a></span>write_text_on_image()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Recognition.Recognition.write_text_on_image </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>bottom_left_corner_of_text</em> = <code>(10,&#160;500)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Writes text above the recognized field
+
+:param img:
+:param message:
+:param bottom_left_corner_of_text:
+:return:
+</pre> 
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/Recognition.py</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.14
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_recognition.html">Recognition</a></li><li class="navelem"><a class="el" href="class_recognition_1_1_recognition.html">Recognition</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
 </body>
 </html>

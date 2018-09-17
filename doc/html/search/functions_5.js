@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['train_5fsystem',['train_system',['../class_training_1_1_training.html#ae08acd1661b3b8d7b7b12a9648abe876',1,'Training::Training']]]
+  ['manipulate_5fimage',['manipulate_image',['../class_misc_1_1_misc.html#aebc81e32ad0507ccbccd8173d9a0ff50',1,'Misc::Misc']]]
 ];

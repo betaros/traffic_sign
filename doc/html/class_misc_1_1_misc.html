@@ -9,6 +9,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -46,6 +54,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_misc_1_1_misc.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,11 +85,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespace_misc.html">Misc</a></li><li class="navelem"><a class="el" href="class_misc_1_1_misc.html">Misc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -78,13 +98,18 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2361f15b11e4875dff86f4bedf58dc31"><td class="memItemLeft" align="right" valign="top"><a id="a2361f15b11e4875dff86f4bedf58dc31"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self)</td></tr>
+<tr class="memitem:a2361f15b11e4875dff86f4bedf58dc31"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#a2361f15b11e4875dff86f4bedf58dc31">__init__</a> (self)</td></tr>
 <tr class="separator:a2361f15b11e4875dff86f4bedf58dc31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3f58245bac7eefdc5a266a06bd1cb85"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#af3f58245bac7eefdc5a266a06bd1cb85">download_files</a> (self, images=True, haar=False)</td></tr>
-<tr class="separator:af3f58245bac7eefdc5a266a06bd1cb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeb87b754b9e7b39fcf5c39e6b34a1ae"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#aaeb87b754b9e7b39fcf5c39e6b34a1ae">manipulate_image</a> (self)</td></tr>
-<tr class="separator:aaeb87b754b9e7b39fcf5c39e6b34a1ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a911cb2d9726dcdbf6ef25607522cedc0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#a911cb2d9726dcdbf6ef25607522cedc0">download_pos_files</a> (self, images=True, haar=False)</td></tr>
+<tr class="separator:a911cb2d9726dcdbf6ef25607522cedc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea6e1bbdef723dfbe94899cd18399b93"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#aea6e1bbdef723dfbe94899cd18399b93">download_neg_files</a> (self)</td></tr>
+<tr class="separator:aea6e1bbdef723dfbe94899cd18399b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04c3efa3e287f2aba4cefbb2c11d0098"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#a04c3efa3e287f2aba4cefbb2c11d0098">download_face_recognition_haar</a> (self)</td></tr>
+<tr class="separator:a04c3efa3e287f2aba4cefbb2c11d0098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc81e32ad0507ccbccd8173d9a0ff50"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#aebc81e32ad0507ccbccd8173d9a0ff50">manipulate_image</a> (self, positive=False)</td></tr>
+<tr class="separator:aebc81e32ad0507ccbccd8173d9a0ff50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a850d818bacc25df0ecc2ae05b9b15f89"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_misc_1_1_misc.html#a850d818bacc25df0ecc2ae05b9b15f89">generate_description</a> (self)</td></tr>
+<tr class="separator:a850d818bacc25df0ecc2ae05b9b15f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -108,15 +133,77 @@ Public Attributes</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>sign_classes_colors</b></td></tr>
 <tr class="separator:a3956381cbf1848ff93d562dad430dc36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="af3f58245bac7eefdc5a266a06bd1cb85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3f58245bac7eefdc5a266a06bd1cb85">&#9670;&nbsp;</a></span>download_files()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><pre class="fragment">This class contains functions which are used independent of it's context
+</pre> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2361f15b11e4875dff86f4bedf58dc31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2361f15b11e4875dff86f4bedf58dc31">&#9670;&nbsp;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def Misc.Misc.download_files </td>
+          <td class="memname">def Misc.Misc.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialising
+</pre> 
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a04c3efa3e287f2aba4cefbb2c11d0098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04c3efa3e287f2aba4cefbb2c11d0098">&#9670;&nbsp;</a></span>download_face_recognition_haar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Misc.Misc.download_face_recognition_haar </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Downloading face recognition haar data as sample data
+:return:
+</pre> 
+</div>
+</div>
+<a id="aea6e1bbdef723dfbe94899cd18399b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea6e1bbdef723dfbe94899cd18399b93">&#9670;&nbsp;</a></span>download_neg_files()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Misc.Misc.download_neg_files </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Downloading negative sample files
+:return:
+</pre> 
+</div>
+</div>
+<a id="a911cb2d9726dcdbf6ef25607522cedc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a911cb2d9726dcdbf6ef25607522cedc0">&#9670;&nbsp;</a></span>download_pos_files()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Misc.Misc.download_pos_files </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>self</em>, </td>
@@ -216,8 +303,27 @@ Public Attributes</h2></td></tr>
 </pre> 
 </div>
 </div>
-<a id="aaeb87b754b9e7b39fcf5c39e6b34a1ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaeb87b754b9e7b39fcf5c39e6b34a1ae">&#9670;&nbsp;</a></span>manipulate_image()</h2>
+<a id="a850d818bacc25df0ecc2ae05b9b15f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a850d818bacc25df0ecc2ae05b9b15f89">&#9670;&nbsp;</a></span>generate_description()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def Misc.Misc.generate_description </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">:return:
+</pre> 
+</div>
+</div>
+<a id="aebc81e32ad0507ccbccd8173d9a0ff50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc81e32ad0507ccbccd8173d9a0ff50">&#9670;&nbsp;</a></span>manipulate_image()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,8 +332,18 @@ Public Attributes</h2></td></tr>
           <td class="memname">def Misc.Misc.manipulate_image </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em></td><td>)</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>positive</em> = <code>False</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -240,11 +356,15 @@ Public Attributes</h2></td></tr>
 <li>src/Misc.py</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.14
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespace_misc.html">Misc</a></li><li class="navelem"><a class="el" href="class_misc_1_1_misc.html">Misc</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
 </body>
 </html>

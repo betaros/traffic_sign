@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['load_5fimages',['load_images',['../class_training_1_1_training.html#a6df4e220dd5cbd4769a84852fc4e9d60',1,'Training::Training']]],
-  ['load_5ftest_5fimage_5fproperties',['load_test_image_properties',['../class_training_1_1_training.html#aa886794bd150b7a8894db32437893757',1,'Training::Training']]],
-  ['load_5ftraining_5fimage_5fproperties',['load_training_image_properties',['../class_training_1_1_training.html#a910d50cee577997808b934c6ef0d5a31',1,'Training::Training']]]
+  ['face_5frecognition',['face_recognition',['../class_recognition_1_1_recognition.html#a8c3d9ab0e9c708246660b8a6300eb852',1,'Recognition::Recognition']]],
+  ['fill_5fnumber',['fill_number',['../class_misc_1_1_misc.html#a58fba0bed4c5f2ff76cdf83e20670fb4',1,'Misc::Misc']]],
+  ['folder_5fcounter',['folder_counter',['../class_misc_1_1_misc.html#a8d30d14e25c28f7f8ac3798e501d4aaa',1,'Misc::Misc']]]
 ];

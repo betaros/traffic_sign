@@ -18,9 +18,11 @@ class Training:
     Training class
     """
     def __init__(self):
-        self.project_root = os.path.dirname(os.path.dirname(__file__))
-        self.training_path = os.path.join(self.project_root, "dataset", "GTSRB", "Final_Training", "Images")
-        self.test_path = os.path.join(self.project_root, "dataset", "GTSRB", "Final_Test", "Images")
+        """
+        Initialising
+        """
+        self.training_path = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", "Images")
+        self.test_path = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Test", "Images")
 
         self.misc = Misc()
 
@@ -98,6 +100,15 @@ class Training:
         self.load_images(training=True)
 
     def show(self, image, x1=0, y1=0, x2=0, y2=0):
+        """
+
+        :param image:
+        :param x1:
+        :param y1:
+        :param x2:
+        :param y2:
+        :return:
+        """
         # Image.open(image).show()
         img = cv2.imread(image)
         img_selected = cv2.rectangle(img,

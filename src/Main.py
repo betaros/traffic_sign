@@ -22,6 +22,9 @@ class Main:
     Main class
     """
     def __init__(self):
+        """
+        Initialization
+        """
         self.misc = Misc()
         self.recognition = Recognition()
         self.training = Training()

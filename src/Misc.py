@@ -1,6 +1,6 @@
 """
 Authors:        Jan Füsting
-Last edited:    10.09.2018
+Last edited:    17.09.2018
 """
 import cv2
 import logging
@@ -11,7 +11,13 @@ import zipfile
 
 
 class Misc:
+    """
+    This class contains functions which are used independent of it's context
+    """
     def __init__(self):
+        """
+        Initialising
+        """
         logging.basicConfig(format='%(asctime)s - %(levelname)s - %(filename)s - %(funcName)s - %(message)s',
                             level=logging.DEBUG)
         self.logger = logging.getLogger("traffic_sign")
@@ -62,9 +68,6 @@ class Misc:
                              "overtake_allowed_truck"]
         self.sign_classes_colors = np.random.uniform(0, 255, size=(len(self.sign_classes), 3))
 
-    """
-    This class contains miscellaneous functions
-    """
     @staticmethod
     def fill_number(number, length):
         """
@@ -149,6 +152,10 @@ class Misc:
         link = ""
 
     def download_face_recognition_haar(self):
+        """
+        Downloading face recognition haar data as sample data
+        :return:
+        """
         link = "https://raw.githubusercontent.com/opencv/opencv/master/data/haarcascades/haarcascade_frontalface_default.xml"
         store = os.path.join(self.project_root, "dataset", "haarcascade_frontalface_default.xml")
 

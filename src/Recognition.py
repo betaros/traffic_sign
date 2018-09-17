@@ -3,17 +3,19 @@ Authors:        Jan Füsting
 Last edited:    10.09.2018
 """
 import cv2
-import logging
 import os
 
 from Misc import Misc
 
 
 class Recognition:
+    """
+    This class handles the
+    """
     def __init__(self):
-        logging.basicConfig(format='%(asctime)s - %(levelname)s - %(funcName)s: %(message)s', level=logging.DEBUG)
-        self.logger = logging.getLogger("traffic_sign")
-
+        """
+        Initialising
+        """
         self.misc = Misc()
 
     def face_recognition(self):
@@ -28,7 +30,7 @@ class Recognition:
         """
         Shows live images with marked detections
         """
-        self.logger.debug("Show cam")
+        self.misc.logger.debug("Show cam")
 
         cam = cv2.VideoCapture(0)
         while True:
@@ -49,10 +51,18 @@ class Recognition:
                 break  # esc to quit
         cv2.destroyAllWindows()
 
-        self.logger.debug("Exit cam")
+        self.misc.logger.debug("Exit cam")
 
     @staticmethod
     def write_text_on_image(img, message, bottom_left_corner_of_text=(10, 500)):
+        """
+        Writes text above the recognized field
+
+        :param img:
+        :param message:
+        :param bottom_left_corner_of_text:
+        :return:
+        """
         font = cv2.FONT_HERSHEY_SIMPLEX
         font_scale = 1
         font_color = (0, 255, 0)
