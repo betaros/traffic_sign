@@ -41,13 +41,11 @@ class Main:
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 
-        # Getting the files
-        self.misc.download_pos_files(images=True, haar=True)
-        self.misc.download_neg_files()
-        self.misc.download_face_recognition_haar()
-        self.misc.manipulate_image()
-
-        # self.training.train_system()
+        # Getting and manipulating datasets
+        self.training.download_pos_files(images=True, haar=True)
+        self.training.download_neg_files()
+        self.training.download_face_recognition_haar()
+        self.training.manipulate_image()
 
         # Get camera image and find traffic signs
         self.recognition.face_recognition()
