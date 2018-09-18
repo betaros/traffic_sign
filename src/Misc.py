@@ -173,12 +173,11 @@ class Misc:
             try:
                 self.logger.debug("Extracting %s", file)
                 with tarfile.open(store) as tar:
-                    # subdir_and_files = [
-                    #     tarinfo for tarinfo in tar.getmembers()
-
-                    #     if tarinfo.name.startswith("jpg/")
-                    # ]
-                    tar.extractall(path=extract_path)
+                    subdir_and_files = [
+                        tarinfo for tarinfo in tar.getmembers()
+                        if tarinfo.name.startswith("airplanes/jpg/")
+                    ]
+                    tar.extractall(members=subdir_and_files, path=extract_path)
                 self.logger.debug("Extraction complete")
                 os.remove(store)
             except (ValueError, RuntimeError):
@@ -204,11 +203,14 @@ class Misc:
         else:
             self.logger.debug("Skip downloading haarcascade_frontalface_default.xml")
 
-    def manipulate_image(self, positive=False):
+    def manipulate_image(self):
         """
         Modifies images to gray scale and resize it
         :return:
         """
+        pos_exists = False
+        neg_exists = False
+
         for (dir_path, dir_names, file_names) in os.walk(os.path.join(self.project_root, "dataset")):
             for dir_name in dir_names:
                 if dir_name == "Images":
@@ -217,24 +219,44 @@ class Misc:
                         os.mkdir(image_mod_path)
                         self.logger.debug("Created folder %s", image_mod_path)
                     else:
-                        return
+                        pos_exists = True
+                if dir_name == "jpg":
+                    jpg_mod_path = os.path.join(dir_path, "jpg_mod")
+                    if not os.path.exists(jpg_mod_path):
+                        os.mkdir(jpg_mod_path)
+                        self.logger.debug("Created folder %s", jpg_mod_path)
+                    else:
+                        neg_exists = True
+
             for file_name in file_names:
                 if file_name.endswith(".ppm"):
+                    if pos_exists:
+                        continue
+
                     img = cv2.imread(os.path.join(dir_path, file_name), cv2.IMREAD_GRAYSCALE)
-                    if positive:
-                        dim = 50
-                    else:
-                        dim = 100
+                    dim = 50
                     resized_image = cv2.resize(img, (dim, dim))
                     resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2BGR)
+
                     try:
-                        int(dir_path[-5:])
-                        dir_path_mod = os.path.join(dir_path[:-12], "Images_mod", dir_path[-5:])
+                        dir_path_mod = os.path.join(dir_path[:-16], "Images_mod", dir_path[-5:])
                         if not os.path.exists(dir_path_mod):
                             os.mkdir(dir_path_mod)
                             self.logger.debug("Created folder %s", dir_path_mod)
                     except ValueError:
-                        dir_path_mod = os.path.join(dir_path[:-12], "Images_mod")
+                        dir_path_mod = os.path.join(dir_path[:-16], "Images_mod")
+                    store_path = os.path.join(dir_path_mod, file_name)
+                    cv2.imwrite(store_path, resized_image)
+                if file_name.endswith(".jpg"):
+                    if neg_exists:
+                        continue
+
+                    img = cv2.imread(os.path.join(dir_path, file_name), cv2.IMREAD_GRAYSCALE)
+                    dim = 100
+                    resized_image = cv2.resize(img, (dim, dim))
+                    resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2BGR)
+                    dir_path_mod = os.path.join(dir_path[:-3], "jpg_mod")
+
                     store_path = os.path.join(dir_path_mod, file_name)
                     cv2.imwrite(store_path, resized_image)
 

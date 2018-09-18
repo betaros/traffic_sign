@@ -43,10 +43,9 @@ class Main:
 
         # Getting the files
         self.misc.download_pos_files(images=True, haar=True)
-        self.misc.manipulate_image(positive=True)
         self.misc.download_neg_files()
-
         self.misc.download_face_recognition_haar()
+        self.misc.manipulate_image()
 
         # self.training.train_system()
 
