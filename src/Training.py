@@ -200,7 +200,33 @@ class Training:
 
         :return:
         """
-        return 1
+        element_counter = 1
+        class_id = 0
+
+        training_properties = self.load_training_image_properties()
+        info_file_path = os.path.join(self.misc.project_root, "info.dat")
+        if os.path.isfile(info_file_path):
+            os.remove(info_file_path)
+
+        for element in training_properties:
+            for index, row in element.iterrows():
+                if row['ClassId'] > class_id:
+                    element_counter = 1
+                    class_id = row['ClassId']
+                line = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", "Images_mod",
+                                    self.misc.fill_number(row['ClassId'], 5), row['Filename']) \
+                                    + ' ' + str(element_counter) \
+                                    + ' ' + str(self.misc.interpolate(row['Roi.X1'], 0, row['Width'], 0, 50)) \
+                                    + ' ' + str(self.misc.interpolate(row['Roi.Y1'], 0, row['Height'], 0, 50)) \
+                                    + ' ' + str(self.misc.interpolate(row['Roi.X2'], 0, row['Width'], 0, 50)) \
+                                    + ' ' + str(self.misc.interpolate(row['Roi.Y2'], 0, row['Height'], 0, 50)) + '\n'
+                with open(info_file_path, 'a') as f:
+                    f.write(line)
+                element_counter = element_counter + 1
+
+                # line = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", row['Filename'])
+                # with open('bg.txt', 'a') as f:
+                #    f.write(line)
 
     def load_training_image_properties(self):
         """

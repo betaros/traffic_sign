@@ -46,6 +46,7 @@ class Main:
         self.training.download_neg_files()
         self.training.download_face_recognition_haar()
         self.training.manipulate_image()
+        self.training.generate_description()
 
         # Get camera image and find traffic signs
         self.recognition.face_recognition()

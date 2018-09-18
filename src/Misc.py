@@ -87,3 +87,24 @@ class Misc:
         for _, dirnames, _ in os.walk(path):
             folders += len(dirnames)
         return folders
+
+    @staticmethod
+    def interpolate(value, old_start, old_end, new_start, new_end):
+        """
+        Interpolates values to new scale
+
+        :param value:
+        :param old_start:
+        :param old_end:
+        :param new_start:
+        :param new_end:
+        :return: integer
+        """
+        delta_old = old_end - old_start
+        delta_new = new_end - new_start
+
+        value = value / delta_old
+        value = value * delta_new
+        value = value + new_start
+
+        return int(value)
