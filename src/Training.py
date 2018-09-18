@@ -21,10 +21,9 @@ class Training:
         """
         Initialising
         """
+        self.misc = Misc()
         self.training_path = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", "Images")
         self.test_path = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Test", "Images")
-
-        self.misc = Misc()
 
     def load_training_image_properties(self):
         """

@@ -6,6 +6,7 @@ import cv2
 import logging
 import numpy as np
 import os
+import tarfile
 import urllib.request
 import zipfile
 
@@ -147,9 +148,43 @@ class Misc:
     def download_neg_files(self):
         """
         Downloading negative sample files
-        :return:
+
+        Source: http://www.robots.ox.ac.uk/~vgg/data/bicos/
         """
-        link = ""
+        url = "http://www.robots.ox.ac.uk/~vgg/data/bicos/data/"
+        file = "airplanes.tar"
+
+        link = os.path.join(url, file)
+        store = os.path.join(self.project_root, file)
+        extract_path = os.path.join(self.project_root, "dataset")
+
+        if os.path.exists(os.path.join(extract_path, "airplanes")):
+            self.logger.debug("Skip downloading %s", file)
+            return
+
+        if not os.path.isfile(store):
+            try:
+                self.logger.debug("Downloading files to %s", store)
+                urllib.request.urlretrieve(link, store)
+                self.logger.debug("Finished downloading")
+            except (urllib.request.HTTPError, urllib.request.URLError):
+                self.logger.error("Unable to download data")
+
+            try:
+                self.logger.debug("Extracting %s", file)
+                with tarfile.open(store) as tar:
+                    # subdir_and_files = [
+                    #     tarinfo for tarinfo in tar.getmembers()
+
+                    #     if tarinfo.name.startswith("jpg/")
+                    # ]
+                    tar.extractall(path=extract_path)
+                self.logger.debug("Extraction complete")
+                os.remove(store)
+            except (ValueError, RuntimeError):
+                self.logger.error("Unable to extract data")
+        else:
+            self.logger.debug("Skip downloading %s", file)
 
     def download_face_recognition_haar(self):
         """
