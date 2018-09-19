@@ -141,8 +141,9 @@ class Training:
         Modifies images to gray scale and resize it
         :return:
         """
-        pos_exists = False
+        gtsrb_exists = False
         neg_exists = False
+        traffic_exists = False
 
         for (dir_path, dir_names, file_names) in os.walk(os.path.join(self.misc.project_root, "dataset")):
             for dir_name in dir_names:
@@ -152,7 +153,7 @@ class Training:
                         os.mkdir(image_mod_path)
                         self.misc.logger.debug("Created folder %s", image_mod_path)
                     else:
-                        pos_exists = True
+                        gtsrb_exists = True
                         self.misc.logger.debug("Skip manipulating positive images")
                 if dir_name == "jpg":
                     jpg_mod_path = os.path.join(dir_path, "jpg_mod")
@@ -162,10 +163,18 @@ class Training:
                     else:
                         neg_exists = True
                         self.misc.logger.debug("Skip manipulating negative images")
+                if dir_name == "traffic":
+                    traffic_mod_path = os.path.join(dir_path, "traffic_mod")
+                    if not os.path.exists(traffic_mod_path):
+                        os.mkdir(traffic_mod_path)
+                        self.misc.logger.debug("Created folder %s", traffic_mod_path)
+                    else:
+                        traffic_exists = True
+                        self.misc.logger.debug("Skip manipulating positive images")
 
             for file_name in file_names:
-                if file_name.endswith(".ppm"):
-                    if pos_exists:
+                if file_name.endswith(".ppm") and "Image" in dir_path:
+                    if gtsrb_exists:
                         continue
 
                     img = cv2.imread(os.path.join(dir_path, file_name), cv2.IMREAD_GRAYSCALE)
@@ -182,7 +191,7 @@ class Training:
                         dir_path_mod = os.path.join(dir_path[:-16], "Images_mod")
                     store_path = os.path.join(dir_path_mod, file_name)
                     cv2.imwrite(store_path, resized_image)
-                if file_name.endswith(".jpg"):
+                if file_name.endswith(".jpg") and "airplanes" in dir_path:
                     if neg_exists:
                         continue
 
@@ -194,13 +203,30 @@ class Training:
 
                     store_path = os.path.join(dir_path_mod, file_name)
                     cv2.imwrite(store_path, resized_image)
+                if file_name.endswith(".jpg") and "traffic" in dir_path:
+                    if traffic_exists:
+                        continue
 
-    def generate_description(self):
+                    img = cv2.imread(os.path.join(dir_path, file_name), cv2.IMREAD_GRAYSCALE)
+                    dim = 50
+                    resized_image = cv2.resize(img, (dim, dim))
+                    resized_image = cv2.cvtColor(resized_image, cv2.COLOR_GRAY2BGR)
+
+                    try:
+                        dir_path_mod = os.path.join(dir_path[:-10], "traffic_mod", dir_path[-2:])
+                        if not os.path.exists(dir_path_mod):
+                            os.mkdir(dir_path_mod)
+                            self.misc.logger.debug("Created folder %s", dir_path_mod)
+                    except ValueError:
+                        dir_path_mod = os.path.join(dir_path[:-10], "traffic_mod")
+                    store_path = os.path.join(dir_path_mod, file_name)
+                    cv2.imwrite(store_path, resized_image)
+
+    def generate_description_gtsrb(self):
         """
 
         :return:
         """
-        element_counter = 1
         class_id = 0
 
         training_properties = self.load_training_image_properties()
@@ -211,22 +237,61 @@ class Training:
         for element in training_properties:
             for index, row in element.iterrows():
                 if row['ClassId'] > class_id:
-                    element_counter = 1
                     class_id = row['ClassId']
                 line = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", "Images_mod",
                                     self.misc.fill_number(row['ClassId'], 5), row['Filename']) \
-                                    + ' ' + str(element_counter) \
-                                    + ' ' + str(self.misc.interpolate(row['Roi.X1'], 0, row['Width'], 0, 50)) \
+                                    + ' 1 ' + str(self.misc.interpolate(row['Roi.X1'], 0, row['Width'], 0, 50)) \
                                     + ' ' + str(self.misc.interpolate(row['Roi.Y1'], 0, row['Height'], 0, 50)) \
-                                    + ' ' + str(self.misc.interpolate(row['Roi.X2'], 0, row['Width'], 0, 50)) \
-                                    + ' ' + str(self.misc.interpolate(row['Roi.Y2'], 0, row['Height'], 0, 50)) + '\n'
+                                    + ' ' + str(self.misc.interpolate(row['Roi.X2'] - row['Roi.X1'], 0, row['Width'], 0, 50)) \
+                                    + ' ' + str(self.misc.interpolate(row['Roi.Y2'] - row['Roi.Y1'], 0, row['Height'], 0, 50)) + '\n'
                 with open(info_file_path, 'a') as f:
                     f.write(line)
-                element_counter = element_counter + 1
 
                 # line = os.path.join(self.misc.project_root, "dataset", "GTSRB", "Final_Training", row['Filename'])
                 # with open('bg.txt', 'a') as f:
                 #    f.write(line)
+
+    def generate_description_traffic(self):
+        """
+
+        :return:
+        """
+        self.misc.logger.debug("Generate description for traffic dataset")
+        root_dir = os.path.join(self.misc.project_root, "dataset", "traffic_mod")
+        for dir_name, subdir_list, file_list in os.walk(root_dir):
+            if subdir_list:
+                for element in subdir_list:
+                    info_path = os.path.join(root_dir, element, "info.dat")
+                    if os.path.isfile(info_path):
+                        self.misc.logger.debug("info.dat already exists")
+                        return
+            for fname in file_list:
+                line = os.path.join(root_dir, dir_name, fname) + " 1 0 0 50 50"
+                # self.misc.logger.debug(line)
+
+                with open(os.path.join(root_dir, dir_name, "info.dat"), 'a') as f:
+                    line = line + "\n"
+                    f.write(line)
+
+    def generate_description_airplanes(self):
+        """
+
+        :return:
+        """
+        self.misc.logger.debug("Generate description for airplanes dataset")
+        root_dir = os.path.join(self.misc.project_root, "dataset", "airplanes", "jpg_mod")
+        for dir_name, subdir_list, file_list in os.walk(root_dir):
+            info_path = os.path.join(root_dir, "bg.txt")
+            if os.path.isfile(info_path):
+                self.misc.logger.debug("info.dat already exists")
+                return
+            for fname in file_list:
+                line = os.path.join(root_dir, fname)
+                # self.misc.logger.debug(line)
+
+                with open(os.path.join(root_dir, dir_name, "bg.txt"), 'a') as f:
+                    line = line + "\n"
+                    f.write(line)
 
     def load_training_image_properties(self):
         """
@@ -293,30 +358,3 @@ class Training:
                                        str(row['Roi.X2']) + " " +
                                        str(row['Roi.Y2']))
         return None
-
-    def train_system(self):
-        """
-        Trains the ai
-        :return:
-        """
-        self.load_images(training=True)
-
-    def show(self, image, x1=0, y1=0, x2=0, y2=0):
-        """
-
-        :param image:
-        :param x1:
-        :param y1:
-        :param x2:
-        :param y2:
-        :return:
-        """
-        # Image.open(image).show()
-        img = cv2.imread(image)
-        img_selected = cv2.rectangle(img,
-                                 (x1, y1),
-                                 (x2, y2),
-                                 (0, 255, 0), 2)
-        cv2.imshow("Image", img_selected)
-        cv2.waitKey(0)
-
