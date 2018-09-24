@@ -31,6 +31,12 @@ var NAVTREE =
         [ "Python Programming", "index.html#python_programming", null ]
       ] ]
     ] ],
+    [ "Haar Cascades", "haar_cascades.html", [
+      [ "Haar Cascaden", "haar_cascades.html#dataset", [
+        [ "Datensatz erstellen", "haar_cascades.html#create_dataset", null ],
+        [ "Cascaden erstellen", "haar_cascades.html#create_cascades", null ]
+      ] ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],

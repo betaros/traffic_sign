@@ -2,7 +2,8 @@
  *
  * \section intro_sec Introduction
  *
- * This is the introduction.
+ * Dieses Projekt befasst sich damit, Verkehrschilder zu erkennen und basierend auf dem erkannten Verkehrsschild,
+ * Aktionen an ein Roboter via ROS zu senden.
  *
  * \section references References
  * \subsection cascade_creation Cascade creation

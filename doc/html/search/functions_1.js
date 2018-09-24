@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['download_5fface_5frecognition_5fhaar',['download_face_recognition_haar',['../class_misc_1_1_misc.html#a04c3efa3e287f2aba4cefbb2c11d0098',1,'Misc::Misc']]],
-  ['download_5fneg_5ffiles',['download_neg_files',['../class_misc_1_1_misc.html#aea6e1bbdef723dfbe94899cd18399b93',1,'Misc::Misc']]],
-  ['download_5fpos_5ffiles',['download_pos_files',['../class_misc_1_1_misc.html#a911cb2d9726dcdbf6ef25607522cedc0',1,'Misc::Misc']]]
+  ['download_5fface_5frecognition_5fhaar',['download_face_recognition_haar',['../class_training_1_1_training.html#af1e7984b798afa13b1a9624c9406ebf1',1,'Training::Training']]],
+  ['download_5fneg_5ffiles',['download_neg_files',['../class_training_1_1_training.html#a3b928a92d958223bfede214302c5df8b',1,'Training::Training']]],
+  ['download_5fpos_5ffiles',['download_pos_files',['../class_training_1_1_training.html#a097c544cd41a26efad6a1f43d9d3e79b',1,'Training::Training']]]
 ];

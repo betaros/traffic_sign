@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['train_5fsystem',['train_system',['../class_training_1_1_training.html#ae08acd1661b3b8d7b7b12a9648abe876',1,'Training::Training']]],
-  ['training',['Training',['../class_training_1_1_training.html',1,'Training.Training'],['../namespace_training.html',1,'Training']]]
+  ['recognition',['Recognition',['../class_recognition_1_1_recognition.html',1,'Recognition.Recognition'],['../namespace_recognition.html',1,'Recognition']]],
+  ['run',['run',['../class_main_1_1_main.html#ab9b18db6a7f0e5b336228e11d969bb76',1,'Main::Main']]]
 ];

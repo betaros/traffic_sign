@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_20page',['Main page',['../index.html',1,'']]]
+  ['haar_20cascades',['Haar Cascades',['../haar_cascades.html',1,'']]]
 ];

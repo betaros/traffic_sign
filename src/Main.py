@@ -42,10 +42,10 @@ class Main:
             os.makedirs(dataset_path)
 
         # Getting and manipulating datasets
-        self.training.download_pos_files(images=True, haar=True)
+        # self.training.download_pos_files(images=True, haar=True)
         self.training.download_neg_files()
         self.training.download_face_recognition_haar()
-        self.training.manipulate_image()
+        # self.training.manipulate_image()
         self.training.generate_description_traffic()
         self.training.generate_description_airplanes()
 

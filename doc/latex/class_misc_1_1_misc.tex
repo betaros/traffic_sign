@@ -4,16 +4,6 @@
 \begin{DoxyCompactItemize}
 \item 
 def \mbox{\hyperlink{class_misc_1_1_misc_a2361f15b11e4875dff86f4bedf58dc31}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
-\item 
-def \mbox{\hyperlink{class_misc_1_1_misc_a911cb2d9726dcdbf6ef25607522cedc0}{download\+\_\+pos\+\_\+files}} (self, images=True, haar=False)
-\item 
-def \mbox{\hyperlink{class_misc_1_1_misc_aea6e1bbdef723dfbe94899cd18399b93}{download\+\_\+neg\+\_\+files}} (self)
-\item 
-def \mbox{\hyperlink{class_misc_1_1_misc_a04c3efa3e287f2aba4cefbb2c11d0098}{download\+\_\+face\+\_\+recognition\+\_\+haar}} (self)
-\item 
-def \mbox{\hyperlink{class_misc_1_1_misc_aebc81e32ad0507ccbccd8173d9a0ff50}{manipulate\+\_\+image}} (self, positive=False)
-\item 
-def \mbox{\hyperlink{class_misc_1_1_misc_a850d818bacc25df0ecc2ae05b9b15f89}{generate\+\_\+description}} (self)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -21,6 +11,8 @@ def \mbox{\hyperlink{class_misc_1_1_misc_a850d818bacc25df0ecc2ae05b9b15f89}{gene
 def \mbox{\hyperlink{class_misc_1_1_misc_a58fba0bed4c5f2ff76cdf83e20670fb4}{fill\+\_\+number}} (number, length)
 \item 
 def \mbox{\hyperlink{class_misc_1_1_misc_a8d30d14e25c28f7f8ac3798e501d4aaa}{folder\+\_\+counter}} (path)
+\item 
+def \mbox{\hyperlink{class_misc_1_1_misc_a13003135b0176722b987635ea8a52746}{interpolate}} (value, old\+\_\+start, old\+\_\+end, new\+\_\+start, new\+\_\+end)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -56,36 +48,7 @@ def \mbox{\hyperlink{class_misc_1_1_misc_a8d30d14e25c28f7f8ac3798e501d4aaa}{fold
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_misc_1_1_misc_a04c3efa3e287f2aba4cefbb2c11d0098}\label{class_misc_1_1_misc_a04c3efa3e287f2aba4cefbb2c11d0098}} 
-\index{Misc\+::\+Misc@{Misc\+::\+Misc}!download\+\_\+face\+\_\+recognition\+\_\+haar@{download\+\_\+face\+\_\+recognition\+\_\+haar}}
-\index{download\+\_\+face\+\_\+recognition\+\_\+haar@{download\+\_\+face\+\_\+recognition\+\_\+haar}!Misc\+::\+Misc@{Misc\+::\+Misc}}
-\subsubsection{\texorpdfstring{download\+\_\+face\+\_\+recognition\+\_\+haar()}{download\_face\_recognition\_haar()}}
-{\footnotesize\ttfamily def Misc.\+Misc.\+download\+\_\+face\+\_\+recognition\+\_\+haar (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Downloading face recognition haar data as sample data
-:return:
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_misc_1_1_misc_aea6e1bbdef723dfbe94899cd18399b93}\label{class_misc_1_1_misc_aea6e1bbdef723dfbe94899cd18399b93}} 
-\index{Misc\+::\+Misc@{Misc\+::\+Misc}!download\+\_\+neg\+\_\+files@{download\+\_\+neg\+\_\+files}}
-\index{download\+\_\+neg\+\_\+files@{download\+\_\+neg\+\_\+files}!Misc\+::\+Misc@{Misc\+::\+Misc}}
-\subsubsection{\texorpdfstring{download\+\_\+neg\+\_\+files()}{download\_neg\_files()}}
-{\footnotesize\ttfamily def Misc.\+Misc.\+download\+\_\+neg\+\_\+files (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Downloading negative sample files
-:return:
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_misc_1_1_misc_a911cb2d9726dcdbf6ef25607522cedc0}\label{class_misc_1_1_misc_a911cb2d9726dcdbf6ef25607522cedc0}} 
-\index{Misc\+::\+Misc@{Misc\+::\+Misc}!download\+\_\+pos\+\_\+files@{download\+\_\+pos\+\_\+files}}
-\index{download\+\_\+pos\+\_\+files@{download\+\_\+pos\+\_\+files}!Misc\+::\+Misc@{Misc\+::\+Misc}}
-\subsubsection{\texorpdfstring{download\+\_\+pos\+\_\+files()}{download\_pos\_files()}}
-{\footnotesize\ttfamily def Misc.\+Misc.\+download\+\_\+pos\+\_\+files (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{images = {\ttfamily True},  }\item[{}]{haar = {\ttfamily False} }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Downloads and extracts the datasets selected
-:param images:
-:param haar:
-:return:
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_misc_1_1_misc_a58fba0bed4c5f2ff76cdf83e20670fb4}\label{class_misc_1_1_misc_a58fba0bed4c5f2ff76cdf83e20670fb4}} 
+\mbox{\Hypertarget{class_misc_1_1_misc_a58fba0bed4c5f2ff76cdf83e20670fb4}\label{class_misc_1_1_misc_a58fba0bed4c5f2ff76cdf83e20670fb4}} 
 \index{Misc\+::\+Misc@{Misc\+::\+Misc}!fill\+\_\+number@{fill\+\_\+number}}
 \index{fill\+\_\+number@{fill\+\_\+number}!Misc\+::\+Misc@{Misc\+::\+Misc}}
 \subsubsection{\texorpdfstring{fill\+\_\+number()}{fill\_number()}}
@@ -106,22 +69,20 @@ def \mbox{\hyperlink{class_misc_1_1_misc_a8d30d14e25c28f7f8ac3798e501d4aaa}{fold
 :param path:
 :return:
 \end{DoxyVerb}
- \mbox{\Hypertarget{class_misc_1_1_misc_a850d818bacc25df0ecc2ae05b9b15f89}\label{class_misc_1_1_misc_a850d818bacc25df0ecc2ae05b9b15f89}} 
-\index{Misc\+::\+Misc@{Misc\+::\+Misc}!generate\+\_\+description@{generate\+\_\+description}}
-\index{generate\+\_\+description@{generate\+\_\+description}!Misc\+::\+Misc@{Misc\+::\+Misc}}
-\subsubsection{\texorpdfstring{generate\+\_\+description()}{generate\_description()}}
-{\footnotesize\ttfamily def Misc.\+Misc.\+generate\+\_\+description (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+ \mbox{\Hypertarget{class_misc_1_1_misc_a13003135b0176722b987635ea8a52746}\label{class_misc_1_1_misc_a13003135b0176722b987635ea8a52746}} 
+\index{Misc\+::\+Misc@{Misc\+::\+Misc}!interpolate@{interpolate}}
+\index{interpolate@{interpolate}!Misc\+::\+Misc@{Misc\+::\+Misc}}
+\subsubsection{\texorpdfstring{interpolate()}{interpolate()}}
+{\footnotesize\ttfamily def Misc.\+Misc.\+interpolate (\begin{DoxyParamCaption}\item[{}]{value,  }\item[{}]{old\+\_\+start,  }\item[{}]{old\+\_\+end,  }\item[{}]{new\+\_\+start,  }\item[{}]{new\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
-\begin{DoxyVerb}:return:
-\end{DoxyVerb}
- \mbox{\Hypertarget{class_misc_1_1_misc_aebc81e32ad0507ccbccd8173d9a0ff50}\label{class_misc_1_1_misc_aebc81e32ad0507ccbccd8173d9a0ff50}} 
-\index{Misc\+::\+Misc@{Misc\+::\+Misc}!manipulate\+\_\+image@{manipulate\+\_\+image}}
-\index{manipulate\+\_\+image@{manipulate\+\_\+image}!Misc\+::\+Misc@{Misc\+::\+Misc}}
-\subsubsection{\texorpdfstring{manipulate\+\_\+image()}{manipulate\_image()}}
-{\footnotesize\ttfamily def Misc.\+Misc.\+manipulate\+\_\+image (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{positive = {\ttfamily False} }\end{DoxyParamCaption})}
+\begin{DoxyVerb}Interpolates values to new scale
 
-\begin{DoxyVerb}Modifies images to gray scale and resize it
-:return:
+:param value:
+:param old_start:
+:param old_end:
+:param new_start:
+:param new_end:
+:return: integer
 \end{DoxyVerb}
  
 

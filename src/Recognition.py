@@ -24,13 +24,19 @@ class Recognition:
         """
         cascade = cv2.CascadeClassifier(
             os.path.join(self.misc.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
-        self.get_camera_image(cascade, "Face")
+        self.get_camera_image()
 
-    def get_camera_image(self, cascade, message, mirror=True):
+    def get_camera_image(self, mirror=True):
         """
         Shows live images with marked detections
         """
         self.misc.logger.debug("Show cam")
+
+        class_01_cascade = cv2.CascadeClassifier(
+            os.path.join(self.misc.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
+
+        face_cascade = cv2.CascadeClassifier(
+            os.path.join(self.misc.project_root, 'dataset', '01_cascade.xml'))
 
         cam = cv2.VideoCapture(0)
         while True:
@@ -39,12 +45,16 @@ class Recognition:
                 img = cv2.flip(img, 1)
             # img = cv2.resize(img, (960, 540))
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            faces = cascade.detectMultiScale(gray, 1.3, 5)
+
+            faces = face_cascade.detectMultiScale(gray, 1.3, 5)
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-                self.write_text_on_image(img, message, (x, y-5))
-                # roi_gray = gray[y:y+h, x:x+w]
-                # roi_color = img[y:y + h, x:x + w]
+                self.write_text_on_image(img, "Faces", (x, y-5))
+
+            class_01 = class_01_cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in class_01:
+                cv2.rectangle(img, (x, y), (x+w, y+h), (255, 255, 0), 2)
+                self.write_text_on_image(img, "entry forbidden", (x, y-5))
 
             cv2.imshow('Webcam', img)
             if cv2.waitKey(1) == 27:
