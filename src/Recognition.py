@@ -33,10 +33,10 @@ class Recognition:
         self.misc.logger.debug("Show cam")
 
         class_01_cascade = cv2.CascadeClassifier(
-            os.path.join(self.misc.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
+            os.path.join(self.misc.project_root, 'dataset', '01_cascade.xml'))
 
         face_cascade = cv2.CascadeClassifier(
-            os.path.join(self.misc.project_root, 'dataset', '01_cascade.xml'))
+            os.path.join(self.misc.project_root, 'dataset', 'haarcascade_frontalface_default.xml'))
 
         cam = cv2.VideoCapture(0)
         while True:
@@ -51,10 +51,10 @@ class Recognition:
                 cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
                 self.write_text_on_image(img, "Faces", (x, y-5))
 
-            class_01 = class_01_cascade.detectMultiScale(gray, 1.3, 5)
-            for (x, y, w, h) in class_01:
-                cv2.rectangle(img, (x, y), (x+w, y+h), (255, 255, 0), 2)
-                self.write_text_on_image(img, "entry forbidden", (x, y-5))
+            # class_01 = class_01_cascade.detectMultiScale(gray, 1.3, 5)
+            # for (x, y, w, h) in class_01:
+            #     cv2.rectangle(img, (x, y), (x+w, y+h), (255, 255, 0), 2)
+            #     self.write_text_on_image(img, "entry forbidden", (x, y-5))
 
             cv2.imshow('Webcam', img)
             if cv2.waitKey(1) == 27:
