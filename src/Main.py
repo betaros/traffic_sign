@@ -10,9 +10,9 @@ Last edited:    10.09.2018
 """
 import os
 
-from Misc import Misc
-from Recognition import Recognition
-from Training import Training
+from src.Misc import Misc
+from src.Recognition import Recognition
+from src.Training import Training
 
 
 # Conflict ROS Kinetic and OpenCV
@@ -43,8 +43,8 @@ class Main:
 
         # Getting and manipulating datasets
         # self.training.download_pos_files(images=True, haar=True)
-        self.training.download_neg_files()
-        self.training.download_face_recognition_haar()
+        # self.training.download_neg_files()
+        # self.training.download_face_recognition_haar()
         # self.training.manipulate_image()
         self.training.generate_description_traffic()
         self.training.generate_description_airplanes()

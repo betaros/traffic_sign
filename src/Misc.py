@@ -2,7 +2,6 @@
 Authors:        Jan Füsting
 Last edited:    17.09.2018
 """
-import cv2
 import logging
 import numpy as np
 import os
