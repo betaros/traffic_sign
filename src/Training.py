@@ -145,8 +145,10 @@ class Training:
         neg_exists = False
         traffic_exists = False
 
+        # Walk through datasets and manipulate images
         for (dir_path, dir_names, file_names) in os.walk(os.path.join(self.misc.project_root, "dataset")):
             for dir_name in dir_names:
+                # Create mod dir if not exists
                 if dir_name == "Images":
                     image_mod_path = os.path.join(dir_path, "Images_mod")
                     if not os.path.exists(image_mod_path):
@@ -172,6 +174,7 @@ class Training:
                         traffic_exists = True
                         self.misc.logger.debug("Skip manipulating positive images")
 
+            # manipulate files
             for file_name in file_names:
                 if file_name.endswith(".ppm") and "Image" in dir_path:
                     if gtsrb_exists:
