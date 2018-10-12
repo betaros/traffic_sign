@@ -3,7 +3,6 @@ Authors:        Jan Füsting
 Last edited:    17.09.2018
 """
 import logging
-import numpy as np
 import os
 
 
@@ -19,51 +18,6 @@ class Misc:
                             level=logging.DEBUG)
         self.logger = logging.getLogger("traffic_sign")
         self.project_root = os.path.dirname(os.path.dirname(__file__))
-
-        self.sign_classes = ["speed_20",
-                             "speed_30",
-                             "speed_50",
-                             "speed_60",
-                             "speed_70",
-                             "speed_80",
-                             "speed_80_end",
-                             "speed_100",
-                             "speed_120",
-                             "overtake_forbidden_all",
-                             "overtake_forbidden_truck",
-                             "priority_crossing",
-                             "priority_road",
-                             "give_way",
-                             "stop",
-                             "all_vehicle_forbidden",
-                             "trucks_forbidden",
-                             "entry_forbidden",
-                             "attention",
-                             "warning_left_turn",
-                             "warning_right_turn",
-                             "double_turn_left",
-                             "bumps",
-                             "slippery",
-                             "narrow_road_right",
-                             "construction_work",
-                             "traffic_light",
-                             "pedestrians",
-                             "children",
-                             "bicycle",
-                             "snow",
-                             "animals",
-                             "speed_unlimited",
-                             "right_turn",
-                             "left_turn",
-                             "straight",
-                             "straight_or_right_turn",
-                             "straight_or_left_turn",
-                             "stay_left",
-                             "stay_right",
-                             "circle_road",
-                             "overtake_allowed_all",
-                             "overtake_allowed_truck"]
-        self.sign_classes_colors = np.random.uniform(0, 255, size=(len(self.sign_classes), 3))
 
     @staticmethod
     def fill_number(number, length):
