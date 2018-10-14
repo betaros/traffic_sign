@@ -46,11 +46,12 @@ class Main:
         # self.training.download_neg_files()
         # self.training.download_face_recognition_haar()
         # self.training.manipulate_image()
-        self.training.generate_description_traffic()
-        self.training.generate_description_airplanes()
+        # self.training.generate_description_traffic()
+        # self.training.generate_description_airplanes()
 
         # Get camera image and find traffic signs
-        self.recognition.face_recognition()
+        # self.recognition.face_recognition()
+        self.recognition.get_camera_image()
 
         self.misc.logger.debug("Program finished")
 

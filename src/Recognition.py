@@ -25,17 +25,17 @@ class Recognition:
         self.misc.logger.debug("Show cam")
 
         show_face = False
-        show_class1 = False
-        show_class2 = False
+        show_class1 = True
+        show_class2 = True
         show_class3 = True
-        show_class4 = False
+        show_class4 = True
         show_class5 = True
-        show_class6 = False
-        show_class7 = False
-        show_class8 = False
-        show_class9 = False
-        show_class10 = False
-        show_class11 = False
+        show_class6 = True
+        show_class7 = True
+        show_class8 = True
+        show_class9 = True
+        show_class10 = True
+        show_class11 = True
 
         if show_class1:
             class_01_cascade = cv2.CascadeClassifier(
