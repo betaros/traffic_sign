@@ -5,7 +5,7 @@ Last edited:    10.09.2018
 import cv2
 import os
 
-from src.Misc import Misc
+from Misc import Misc
 
 
 class Recognition:

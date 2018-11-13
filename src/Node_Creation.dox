@@ -1,17 +1,20 @@
-/*! \mainpage Main page
+/*
+ * \section beschreibung Beschreibung
  *
- * \section intro_sec Introduction
+ * Node in catkin_ws erstellen
+ *   - cd ~/catkin_ws/src
+ *   - catkin_create_pkg NAME ABHÄNGIGKEITEN
  *
- * Dieses Projekt befasst sich damit, Verkehrschilder zu erkennen und basierend auf dem erkannten Verkehrsschild,
- * Aktionen an ein Roboter via ROS zu senden.
+ * Ordner erstellen
+ *   - mkdir ~/catkin_ws/src/NAME/src
+ *   - mkdir ~/catkin_ws/src/NAME/launch
  *
- * Turtlebot Camera
- * 1. Remote
- *   - roscore
- * 2. Turtlebot
- *   - roslaunch raspicam_node camerav1_1280x720.launch
- * 3. Remote
- *   - rqt_image_view
+ * Node schreiben
+ *   - Quellcode unter ~/catkin_ws/src/NAME/src schreiben
+ *   - Launch schreiben
+ *
+ * \subsection launch Launchfile erstellen
+ *   -
  *
  * \section references References
  * \subsection cascade_creation Cascade creation

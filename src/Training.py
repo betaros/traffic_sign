@@ -2,7 +2,7 @@
 Authors:        Jan Füsting
 Last edited:    10.09.2018
 """
-from src.Misc import Misc
+from Misc import Misc
 
 import cv2
 import os
