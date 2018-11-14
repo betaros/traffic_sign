@@ -1,0 +1,42 @@
+/*! \page haarCascades Haar Cascades
+ * \section dataset Haar Cascaden
+ *
+ * \subsection create_dataset Datensatz erstellen
+ * Für die Erstellung des Datensatzes zu Verkehrszeichenerkennung wurden Videoaufnahmen von den Verkehrszeichen aus
+ * mehreren Perspektiven gemacht. Danach wurde das Video mit ffmpeg in einzelne Bilder gespeichert.
+ *
+ * \code{.sh}
+ * ffmpeg -i videodatei bildname -hidebanner
+ * \endcode
+ *
+ * Dabei ist zu beachten, dann beim Bildname %04d im Dateinamen mit angegeben wird, sodass die Bild vierstellig
+ * nummeriert werden. Die Anzahl an Ziffern kann, wenn nötig, angepasst werden z.B. %06d.
+ *
+ * \subsection create_cascades Cascaden erstellen
+ * Der erstellte Datensatz muss nun in einer Liste mit Beschreibung zusammengefasst werden. Dabei wird der Pfad,
+ * die Anzahl an Eigenschaften, sowie die Region of Interest (ROI) angegeben.
+ *
+ * Info.dat erstellen
+ * \code{.sh}
+ * /Dateipfad/Datei.jpg AnzahlEigenschaften ROI.x1 ROI.y1 ROI.x2 ROI.y2
+ * \endcode
+ *
+ * Zur Erstellung von Haar Cascaden werden zusätzlich auch Bilder benötigt, welche die Strukturen, die erkannt
+ * werden sollen nicht enthalten. Dazu wird ein weiterer Datensatz angelegt mit negativ Bildern. Diese werden dann in
+ * einer Datei bg.txt aufgelistet.
+ *
+ * Bg.txt erstellen
+ * \code{.sh}
+ * /Dateipfad/Datei.jpg
+ * \endcode
+ *
+ * Vector Datei erstellen
+ * \code{.sh}
+ * opencv_createsamples -info info.dat -num Anzahl Bilder -w Breite -h Höhe -vec Ausgabedatei.vec
+ * \endcode
+ *
+ * Cascade Training
+ * \code{.sh}
+ * opencv_traincascade -data Pfad zum Speichern -vec Pfad zur Vektordatei -bg Negativ Bilder -numPos Anzahl positiver Bilder -numNeg Anzahl negativer Bilder -numStages Anzahl an Vertiefungen -w Breite -h Höhe
+ * \endcode
+ */
