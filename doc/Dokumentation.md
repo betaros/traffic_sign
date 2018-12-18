@@ -8,10 +8,12 @@ Das Projekt hat zwei weitere Unterprojekte, welche man unter folgenden Links fin
 ## Inhalt
 - [Roboter](#roboter)
 - [Strecke](#strecke)
-- [Verkehrsschilder](#verkehrsschilder)
 - [Schilderkennung](#schilderkennung)
+	- [Verkehrsschilder](#verkehrsschilder)
 	- [Funktionsweise](#funktionsweise)
 	- [Haar Cascaden](#haar-cascaden)
+- [Strassenerkennung](#strassenerkennung)
+- [Steuerung des Roboters](#steuerung-des-roboters)
 - [ROS](#ros)
     - [Vorraussetzungen](#vorraussetzungen)
 	- [Package erstellen](#package-erstellen)
@@ -32,7 +34,9 @@ Die verwendete Strecke orientiert sich am [Turtlebot3 Autorace](http://emanual.r
 <img src="img/autorace_map.png" alt="Schild 1" width="600"/>
 http://emanual.robotis.com/assets/images/platform/turtlebot3/autonomous_driving/autorace_map.png
 
-## Verkehrsschilder
+## Schilderkennung
+
+### Verkehrsschilder
 Die in dem Projekt verwendeten Verkehrsschilder sind Modellverkehrsschilder
 
 Bild | Name | Verhalten
@@ -49,11 +53,23 @@ Bild | Name | Verhalten
 <img src="img/Schild10.jpg" alt="Schild 10" width="200"/> | slippery |
 <img src="img/Schild11.jpg" alt="Schild 11" width="200"/> | entry_road_closed |
 
-## Schilderkennung
-
 ### Funktionsweise
+Um in einem Bild ein Verkehrsschild erkennen zu können werden Haar Cascaden verwendet. Dies sind XML-Dateien, auch Cascaden genannt, welche Daten zur Mustererkennung beinhalten. Der Algorithmus zur Erzeugung dieser Cascaden wird auch Viola-Jones-Methode genannt ([siehe Wikipedia](https://de.wikipedia.org/wiki/Viola-Jones-Methode)).
+
+Die Erkennung von Verkehrsschildern erfolgt in zwei Schritten. Dabei wird zuerst eine Cascade verwendet, um die Form des Verkehrsschildes zu erkennen und danach eine, welche den Inhalt versucht zu erkennen. Daraus wird darauf geschlossen, welches Verkehrsschild sich vor dem Roboter befindet.
 
 ### Haar Cascaden
+Man kann Haar Cascaden mit OpenCV selbst erstellen. Dabei benötigt man einen Datensatz mit negativen Bildern, also Bildern auf denen sich das zu erkennende Objekt nicht befindet.
+
+Außerdem wird ein positives Bild benötigt. Dies wird dann auf auf die negativen Bildern gelegt und unterschiedlich verzerrt. Mit diesem Schritt werden aus den negativen Bildern positive Bilder. Es sollten mindestens doppelt so viele negative Bilder vorhanden sein, wie positive Bilder.
+
+Es gibt zwei detaillierte Anleitungen, wie die Erstellung funktioniert. Diese findet man im Abschnitt [OpenCV in den Quellen](#opencv).
+
+## Strassenerkennung
+*TODO*
+
+## Steuerung des Roboters
+*TODO*
 
 ## ROS
 >Robot Operating System (ROS) ist ein Software-Framework für persönliche Roboter. Die Entwicklung begann 2007 am Stanford Artificial Intelligence Laboratory im Rahmen des Stanford-AI-Robot-Projektes (STAIR) und wurde ab 2009 hauptsächlich am Robotikinstitut Willow Garage weiterentwickelt. Seit April 2012 wird ROS von der neu gegründeten, gemeinnützigen Organisation Open Source Robotics Foundation (OSRF) unterstützt und seit Beendigung der operativen Tätigkeit von Willow Garage 2013 von dieser koordiniert, gepflegt und weiterentwickelt. Seit 2013 beschäftigt sich das ROS Industrial Consortium mit der Förderung und Unterstützung von ROS für Anwendungen in der Industrierobotik. In Europa koordiniert das Fraunhofer IPA die Aktivitäten des ROS Industrial Consortium Europe.
