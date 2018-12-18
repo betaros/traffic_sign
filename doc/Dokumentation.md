@@ -118,10 +118,10 @@ Damit das Projekt gestartet werden kann, müssen folgende Schritte durchgeführt
 *TODO*
 
 ## Quellen
-Roboter
+##### Roboter
 - http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/
 - https://github.com/UbiquityRobotics/raspicam_node
 
-OpenCV
+##### OpenCV
 - https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/
 - https://docs.opencv.org/3.3.0/dc/d88/tutorial_traincascade.html
