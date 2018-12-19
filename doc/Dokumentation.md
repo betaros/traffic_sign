@@ -67,14 +67,14 @@ Es gibt zwei detaillierte Anleitungen, wie die Erstellung funktioniert. Diese fi
 
 ## Straßenerkennung
 
-Mit dem Ziel, dass der Turtlebot auf einer Miniatur-Straße fahren und dem Streckenverlauf folgen kann, wurde zudem an einem aktiven Spurhalteassistenten mit Lenkunterstützung gearbeitet (intern “lane assist” genannt).
+Mit dem Ziel, dass der Turtlebot auf einer Miniatur-Straße fahren und dem Streckenverlauf folgen kann, wurde zudem an einer Straßenerkennung mit aktiven Spurhalteassistenten gearbeitet (intern “lane assist” genannt).
 
 Anforderungen:
 
 - ein **Verlassen** der Straßen beim Vorwärtsfahren soll **vermieden** werden
 - **Kurven** im Straßenverlauf soll gefolgt werden
 - die Erkennung soll in **Echtzeit** laufen
-- eine gestrichelte Spurbegrenzung soll als Indikator eines Parkplatzes erkannt werden
+- eine gestrichelte Spurbegrenzung soll als Indikator eines **Parkplatzes** erkannt werden
 - bei einer Straßen-Gabelung oder -Kreuzung dem Straßenverlauf beliebig folgen.
 - (optional) eine Kalibrierung je nach Licht- und Sichtverhältnissen soll ohne großen Aufwand möglich sein.
 
@@ -91,7 +91,7 @@ Außerhalb des Rahmens dieser Anwendung ist u.a.:
 
 Zum Erkennen der Straße bietet sich die am Turtlebot angebrachte Front-Kamera an. Das Bild-Verarbeiten kann zusammen mit anderen Anforderungen an den Turtlebot jedoch zu rechenintensiv sein; um die Echtzeit-Erkennung gewährleisten zu können, wird deshalb das Kamera-Bild des Turtlebots über ein lokales WLAN-Netzwerk an einen separaten Computer übermittelt. Die ausgewerteten Informationen werden in einer separaten Anwendung genutzt um den Turtlebot zu steuern.
 
-Der Algorithmus besteht aus zwei Schritten: der Foto-Aufbereitung und der Foto-Analyse. In der Foto-Aufbereitung wird das Foto vom Turtlebot empfangen, dekodiert, ggf. richtig gedreht. Um resistenter gegen Unebenheiten, Rauschen im Bild und Verschmutzung der Straße zu sein, wird ein Weichzeichen auf das Bild angewand, hierbei stellte sich ein “Median Blur” als effektiv heraus.
+Der Algorithmus besteht aus zwei Schritten: der Foto-Aufbereitung und der Foto-Analyse. In der Foto-Aufbereitung wird das Foto vom Turtlebot empfangen, dekodiert, ggf. richtig gedreht. Um resistenter gegen Unebenheiten, Rauschen im Bild und Verschmutzung der Straße zu sein, wird ein Weichzeichen auf das Bild angewandt, hierbei stellte sich ein “Median Blur” als effektiv heraus.
 
 Da angenommen wird, dass der Turtlebot auf einer Straße startet (und bei erfolgreicher Spurhaltung dort bleibt) wird davon ausgegangen, dass am mittleren-unteren Rand des Bildes noch die Straße erkennbar ist. Der Straßenrand in beliebiger Richtung sollte durch deutlichen Helligkeits-Übergang erkennbar sein, soweit dieser noch innerhalb der Maße des Fotos ist. Ausgehend von der Mitte des Bildes wird zeilenweise horizontal in beide Richtungen (links & rechts) iteriert, bis ein Helligkeits-Übergang (und somit Straßenrand) erkannt wird; da die Front-Kamera mittig am Turtlebot angebracht ist, kann anhand dieser Werte auch erkannt werden, wie mittig er fährt, über der Differenz zwischen der Mitte des Bildes und der Mitte zwischen dem linken und dem rechten Straßenrand. Sich vertikal ändernde Straßen-Mitten lassen auch auf Verlaufsänderungen, d.h. Kurven, schließen. Neben dem Fall, dass beide Straßenränder parallel verlaufen, gibt es aber auch noch Sonderfälle.
 
