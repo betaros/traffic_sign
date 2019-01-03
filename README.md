@@ -104,7 +104,17 @@ Der letzte Sonderfall ist, dass kein Straßenrand erkannt wird. Da im Rahmen die
 
 
 ## Steuerung des Roboters
-*TODO*
+Damit der Roboter die fest definierte Strecke ordnungsgemäß absolvieren kann, ist es notwendig, dass eine kontinuierliche Abfrage der Streckendaten und der Verkehrsschilder erfolgt. 
+
+Dafür müssen sowohl für die erkannten Verkehrsschilder, als auch für die Strassenerkennung entsprechende Subscriber erstellt werden. 
+
+Mit Hilfe des von der Strassenerkennung übergebenen Winkels wird in kurzen Zeitintervallen  entschieden, in welche Richtung sich der Turtlebot als Nächstes fortbewegt. 
+
+Parallel dazu wird auf Daten des Publishers der Verkehrsschilderkennung geachtet. Eine Reaktion auf ein erkanntes Verkehrsschild erfolgt aber nur dann, wenn es mehrfach hintereinander 
+erkannt wurde und somit  von einer höheren Treffergenauigkeit ausgegangen werden kann.
+
+Als Grundlage für die Steuerung des Turtlebots dient dabei das für die Tastatursteuerung bereits zur Verfügung stehende 
+"[turtlebot3_teleop_key](https://github.com/ROBOTIS-GIT/turtlebot3/blob/master/turtlebot3_teleop/nodes/turtlebot3_teleop_key)".
 
 ## ROS
 >Robot Operating System (ROS) ist ein Software-Framework für persönliche Roboter. Die Entwicklung begann 2007 am Stanford Artificial Intelligence Laboratory im Rahmen des Stanford-AI-Robot-Projektes (STAIR) und wurde ab 2009 hauptsächlich am Robotikinstitut Willow Garage weiterentwickelt. Seit April 2012 wird ROS von der neu gegründeten, gemeinnützigen Organisation Open Source Robotics Foundation (OSRF) unterstützt und seit Beendigung der operativen Tätigkeit von Willow Garage 2013 von dieser koordiniert, gepflegt und weiterentwickelt. Seit 2013 beschäftigt sich das ROS Industrial Consortium mit der Förderung und Unterstützung von ROS für Anwendungen in der Industrierobotik. In Europa koordiniert das Fraunhofer IPA die Aktivitäten des ROS Industrial Consortium Europe.
