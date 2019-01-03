@@ -161,8 +161,7 @@ Damit das Projekt gestartet werden kann, müssen folgende Schritte durchgeführt
 
 ## Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FGG4o4I3b0U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-https://www.youtube.com/embed/FGG4o4I3b0U
+[![TurtleBot Auto Race Challenge](https://img.youtube.com/vi/FGG4o4I3b0U/0.jpg)](https://www.youtube.com/watch?v=FGG4o4I3b0U "TurtleBot Auto Race Challenge")
 
 ## Quellen
 ##### Roboter
