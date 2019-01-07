@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 
 import numpy as np
-from scipy.ndimage import filters
 
 import cv2
-import random
-
-from matplotlib import pyplot as plt
 
 import roslib
 roslib.load_manifest('traffic_sign')
@@ -66,124 +62,124 @@ class image_feature:
             #    y = y - 5
             #    self.write_text_on_image(img, "Faces", x, y)
 
-            formCircleCascade = cv2.CascadeClassifier('')
-            formCircle = formCircleCascade.detectMultiScale(gray, 1.3, 5)
-            for (x, y, w, h) in formCircle:
-                # No parking
-                no_parking_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_no_parking.xml')
-                no_parking = no_parking_cascade.detectMultiScale(gray, 1.3, 5)
-                for (x, y, w, h) in no_parking:
-                    cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 128), 2)
-                    if biggest_value < x * y:
-                        found_msg = "no_parking"
-                        biggest_value = x * y
-                    y = y - 5
-                    self.write_text_on_image(img, "no parking", x, y)
+            # No parking
+            no_parking_cascade = cv2.CascadeClassifier(
+                '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_no_parking.xml')
+            no_parking = no_parking_cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in no_parking:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 128), 2)
+                if biggest_value < x * y:
+                    found_msg = "no_parking"
+                    biggest_value = x * y
+                y = y - 5
+                self.write_text_on_image(img, "no parking", x, y)
 
-                # Entry forbidden
-                entry_forbidden_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_entry_forbidden.xml')
-                entry_forbidden = entry_forbidden_cascade.detectMultiScale(gray, 1.3, 5)
-                for (x, y, w, h) in entry_forbidden:
-                    cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-                    if biggest_value < x * y:
-                        found_msg = "entry_forbidden"
-                        biggest_value = x * y
-                    y = y - 5
-                    self.write_text_on_image(img, "entry forbidden", x, y)
+            # Entry forbidden
+            entry_forbidden_cascade = cv2.CascadeClassifier(
+                '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_entry_forbidden.xml')
+            entry_forbidden = entry_forbidden_cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in entry_forbidden:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                if biggest_value < x * y:
+                    found_msg = "entry_forbidden"
+                    biggest_value = x * y
+                y = y - 5
+                self.write_text_on_image(img, "entry forbidden", x, y)
 
-                # Bus stop
-                bus_stop_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_bus_stop.xml')
-                bus_stop = bus_stop_cascade.detectMultiScale(gray, 1.3, 5)
-                for (x, y, w, h) in bus_stop:
-                    cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 2)
-                    if biggest_value < x * y:
-                        found_msg = "bus_stop"
-                        biggest_value = x * y
-                    y = y - 5
-                    self.write_text_on_image(img, "bus stop", x, y)
+            # Bus stop
+            bus_stop_cascade = cv2.CascadeClassifier(
+                '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_bus_stop.xml')
+            bus_stop = bus_stop_cascade.detectMultiScale(gray, 1.3, 5)
+            for (x, y, w, h) in bus_stop:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 2)
+                if biggest_value < x * y:
+                    found_msg = "bus_stop"
+                    biggest_value = x * y
+                y = y - 5
+                self.write_text_on_image(img, "bus stop", x, y)
 
-            formTriangleCascade = cv2.CascadeClassifier('')
+            formTriangleCascade = cv2.CascadeClassifier(
+                '/home/user/catkin_ws/src/traffic_sign/cascades/red_triangle/cascade.xml')
             formTriangle = formTriangleCascade.detectMultiScale(gray, 1.3, 5)
-            for (x, y, w, h) in formTriangle:
+            for (xa, ya, wa, ha) in formTriangle:
                 # pedestrians
                 pedestrians_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_pedestrians.xml')
-                pedestrians = pedestrians_cascade.detectMultiScale(gray, 1.3, 5)
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/pedestrians/cascade.xml')
+                pedestrians = pedestrians_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in pedestrians:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 128, 0), 2)
                     if biggest_value < x * y:
                         found_msg = "pedestrians"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "pedestrians", x, y)
+                    self.write_text_on_image(img, "pedestrians", xa, ya)
 
                 # turn right
                 turn_right_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_turn_right.xml')
-                turn_right = turn_right_cascade.detectMultiScale(gray, 1.3, 5)
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/turn_right/cascade.xml')
+                turn_right = turn_right_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in turn_right:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (128, 255, 0), 2)
                     if biggest_value < x * y:
                         found_msg = "turn_right"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "turn right", x, y)
+                    self.write_text_on_image(img, "turn right", xa, ya)
 
                 # turn left
                 turn_left_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_turn_left.xml')
-                turn_left = turn_left_cascade.detectMultiScale(gray, 1.3, 5)
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/turn_left/cascade.xml')
+                turn_left = turn_left_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in turn_left:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 128, 0), 2)
                     if biggest_value < x * y:
                         found_msg = "turn_left"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "turn left", x, y)
+                    self.write_text_on_image(img, "turn left", xa, ya)
 
                 # warning
                 warning_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_warning.xml')
-                warning = warning_cascade.detectMultiScale(gray, 1.3, 5)
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/warning/cascade.xml')
+                warning = warning_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in warning:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 128, 128), 2)
                     if biggest_value < x * y:
                         found_msg = "warning"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "warning", x, y)
+                    self.write_text_on_image(img, "warning", xa, ya)
 
                 # crossing
                 crossing_cascade = cv2.CascadeClassifier(
-                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_crossing.xml')
-                crossing = crossing_cascade.detectMultiScale(gray, 1.3, 5)
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/cross/cascade.xml')
+                crossing = crossing_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in class_09:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 2)
                     if biggest_value < x * y:
                         found_msg = "entry_crossing"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "crossing", x, y)
+                    self.write_text_on_image(img, "crossing", xa, ya)
 
                 # slippery
-                slippery_cascade = cv2.CascadeClassifier('/home/user/catkin_ws/src/traffic_sign/cascades/cascade_slippery.xml')
-                slippery = slippery_cascade.detectMultiScale(gray, 1.3, 5)
+                slippery_cascade = cv2.CascadeClassifier(
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/slippery/cascade.xml')
+                slippery = slippery_cascade.detectMultiScale(gray[xa:xa+wa, ya:ya+ha], 1.3, 5)
                 for (x, y, w, h) in slippery:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 2)
                     if biggest_value < x * y:
                         found_msg = "entry_slippery"
                         biggest_value = x * y
                     y = y - 5
-                    self.write_text_on_image(img, "slippery", x, y)
+                    self.write_text_on_image(img, "slippery", xa, ya)
 
             formQuadCascade = cv2.CascadeClassifier('')
             formQuad = formQuadCascade.detectMultiScale(gray, 1.3, 5)
             for (x, y, w, h) in formQuad:
                 # main road
-                main_road_cascade = cv2.CascadeClassifier('/home/user/catkin_ws/src/traffic_sign/cascades/cascade_main_road.xml')
+                main_road_cascade = cv2.CascadeClassifier(
+                    '/home/user/catkin_ws/src/traffic_sign/cascades/cascade_main_road.xml')
                 main_road = main_road_cascade.detectMultiScale(gray, 1.3, 5)
                 for (x, y, w, h) in main_road:
                     cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 255), 2)
