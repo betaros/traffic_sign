@@ -87,8 +87,6 @@ Außerhalb des Rahmens dieser Anwendung ist u.a.:
 - Strecken mit unterschiedlich aussehenden Straßen (z.B. Wechsel von weißer auf schwarzer Straße)
 - Offroad-Fahren
 
-
-
 Zum Erkennen der Straße bietet sich die am Turtlebot angebrachte Front-Kamera an. Das Bild-Verarbeiten kann zusammen mit anderen Anforderungen an den Turtlebot jedoch zu rechenintensiv sein; um die Echtzeit-Erkennung gewährleisten zu können, wird deshalb das Kamera-Bild des Turtlebots über ein lokales WLAN-Netzwerk an einen separaten Computer übermittelt. Die ausgewerteten Informationen werden in einer separaten Anwendung genutzt um den Turtlebot zu steuern.
 
 Der Algorithmus besteht aus zwei Schritten: der Foto-Aufbereitung und der Foto-Analyse. In der Foto-Aufbereitung wird das Foto vom Turtlebot empfangen, dekodiert, ggf. richtig gedreht. Um resistenter gegen Unebenheiten, Rauschen im Bild und Verschmutzung der Straße zu sein, wird ein Weichzeichen auf das Bild angewandt, hierbei stellte sich ein “Median Blur” als effektiv heraus.
@@ -101,19 +99,17 @@ Es besteht der Sonderfall, in dem entweder nur der linke oder der rechte Straße
 
 Der letzte Sonderfall ist, dass kein Straßenrand erkannt wird. Da im Rahmen dieser Arbeit sowohl die Straße als auch der Offroad-Untergrund weiß sind, kann hierbei nicht unterschieden werden der Turtlebot nun on- oder offroad ist. Tendenziell wird versucht geradeaus weiterzufahren, um im Falle vorübergehender Fehlerkennungen nicht stecken zu bleiben; generell ist das Verhalten in diesem Fall jedoch undefiniert, da es außerhalb des rein-weißen Untergrunds zu False-Positives bei der Erkennung des Straßenrandes kommen kann.
 
-
-
 ## Steuerung des Roboters
-Damit der Roboter die fest definierte Strecke ordnungsgemäß absolvieren kann, ist es notwendig, dass eine kontinuierliche Abfrage der Streckendaten und der Verkehrsschilder erfolgt. 
+Damit der Roboter die fest definierte Strecke ordnungsgemäß absolvieren kann, ist es notwendig, dass eine kontinuierliche Abfrage der Streckendaten und der Verkehrsschilder erfolgt.
 
-Dafür müssen sowohl für die erkannten Verkehrsschilder, als auch für die Strassenerkennung entsprechende Subscriber erstellt werden. 
+Dafür müssen sowohl für die erkannten Verkehrsschilder, als auch für die Strassenerkennung entsprechende Subscriber erstellt werden.
 
-Mit Hilfe des von der Strassenerkennung übergebenen Winkels wird in kurzen Zeitintervallen  entschieden, in welche Richtung sich der Turtlebot als Nächstes fortbewegt. 
+Mit Hilfe des von der Strassenerkennung übergebenen Winkels wird in kurzen Zeitintervallen  entschieden, in welche Richtung sich der Turtlebot als Nächstes fortbewegt.
 
-Parallel dazu wird auf Daten des Publishers der Verkehrsschilderkennung geachtet. Eine Reaktion auf ein erkanntes Verkehrsschild erfolgt aber nur dann, wenn es mehrfach hintereinander 
+Parallel dazu wird auf Daten des Publishers der Verkehrsschilderkennung geachtet. Eine Reaktion auf ein erkanntes Verkehrsschild erfolgt aber nur dann, wenn es mehrfach hintereinander
 erkannt wurde und somit  von einer höheren Treffergenauigkeit ausgegangen werden kann.
 
-Als Grundlage für die Steuerung des Turtlebots dient dabei das für die Tastatursteuerung bereits zur Verfügung stehende 
+Als Grundlage für die Steuerung des Turtlebots dient dabei das für die Tastatursteuerung bereits zur Verfügung stehende
 "[turtlebot3_teleop_key](https://github.com/ROBOTIS-GIT/turtlebot3/blob/master/turtlebot3_teleop/nodes/turtlebot3_teleop_key)".
 
 ## ROS
@@ -121,7 +117,7 @@ Als Grundlage für die Steuerung des Turtlebots dient dabei das für die Tastatu
 
 https://de.wikipedia.org/wiki/Robot_Operating_System am 16.12.2018 um 12.16 Uhr
 
-### Vorraussetzungen
+### Voraussetzungen
 Damit das Projekt verwendet werden kann, müssen folgende Vorraussetzungen erfüllt sein:
 - ROS Kinetic oder höher auf Remote PC
 - Turtlebot3 Burger mit ROS Kinetic
@@ -129,9 +125,17 @@ Damit das Projekt verwendet werden kann, müssen folgende Vorraussetzungen erfü
 - RemotePC und Turtlebot3 im gleichen WLAN Netzwerk
 
 ### Package erstellen
+Man kann wie folgt ein eigenes Package erstellen. Dazu muss man sich im Ordner ```~/catkin_ws/src/``` befinden. Dort muss man folgende Schritte befolgen:
 
-*TODO*
+1. cd ~/catkin_ws/src
+2. catkin_make_package *Packagename* **Abhängigkeit1** **Abhängigkeit2** ...
+3. cd *Packagename*
+4. mkdir *launch*
+5. Launch-Datei erstellen wie in http://wiki.ros.org/roslaunch/XML#Minimal_Example beschrieben
+6. cd ~/catkin_ws
+7. catkin_make
 
+nach http://wiki.ros.org/ROS/Tutorials/catkin/CreatingPackage
 
 ### Subscriber
 Damit das Programm die Bilder auswerten und Verkehrsschilder darauf erkennen kann, muss sich das Programm im ROS bei der Raspberry Cam anmelden. Diese liefert die Bilder mittels Videostream.
@@ -149,9 +153,9 @@ Die Verkehrszeichenerkennung hat zwei Ausgabestreams:
 
 Die Straßenerkennung hat folgende zwei Ausgabestreams:
 
-- **/traffic_sign/detected**
+- **/lane_assist/detected**
   Dieser Publisher gibt in einem Int-Stream, welcher den benötigen Winkel angibt, um dem Straßenverlauf zu folgen.
-- **/traffic_sign/image/compressed**
+- **/lane_assist/image/compressed**
   Um das Programm debuggen zu können, wird zusätzlich ein Videostream ausgegeben, an das vorbereitete Kamera-Bild mit extra Linien überlagert wird, welche die erkannten Straßenränder markieren und den Verlauf erkennen lassen.
 
 ### Projekt starten
@@ -172,6 +176,13 @@ Damit das Projekt gestartet werden kann, müssen folgende Schritte durchgeführt
 ## Video
 
 [![TurtleBot Auto Race Challenge](https://img.youtube.com/vi/FGG4o4I3b0U/0.jpg)](https://www.youtube.com/watch?v=FGG4o4I3b0U "TurtleBot Auto Race Challenge")
+
+## Probleme und Verbesserungen
+Beim Stand der Abgabe sind die erstellten Cascaden nicht zuverlässig. Aufgrund dessen reagiert der Roboter nicht immer, wie erwartet. Sollte das Projekt fortgesetzt werden, so ist es notwendig die Verkehrsschilderkennung zu verbessern und neue Cascaden zu erstellen.
+
+Die Linienerkennung erkennt die Streckenführung. Bei Kreuzungen fährt der Roboter den bisherigen Weg weiter. Dies kann im weiterführenden Projekt optimiert werden.
+
+Der Roboter reagiert auf erkannte Verkehrsschilder. Für zukünftige Projekte ist eine Zeitschleife nach der Geschwindigkeit aufgenommen wird notwendig, z.B. bei einem Stop-Schild.
 
 ## Quellen
 ##### Roboter
