@@ -41,17 +41,17 @@ Die in dem Projekt verwendeten Verkehrsschilder sind Modellverkehrsschilder
 
 Bild | Name | Verhalten
 -----|------|----------
-<img src="img/Schild1.jpg" alt="Schild 1" width="200"/> | entry_forbidden |
-<img src="img/Schild2.jpg" alt="Schild 2" width="200"/> | pedestrians |
-<img src="img/Schild3.jpg" alt="Schild 3" width="200"/> | turn_right |
-<img src="img/Schild4.jpg" alt="Schild 4" width="200"/> | main_road |
-<img src="img/Schild5.jpg" alt="Schild 5" width="200"/> | turn_left |
-<img src="img/Schild6.jpg" alt="Schild 6" width="200"/> | warning |
-<img src="img/Schild7.jpg" alt="Schild 7" width="200"/> | no_parking |
-<img src="img/Schild8.jpg" alt="Schild 8" width="200"/> | bus_stop |
-<img src="img/Schild9.jpg" alt="Schild 9" width="200"/> | crossing |
-<img src="img/Schild10.jpg" alt="Schild 10" width="200"/> | slippery |
-<img src="img/Schild11.jpg" alt="Schild 11" width="200"/> | entry_road_closed |
+<img src="img/Schild1.jpg" alt="Schild 1" width="200"/> | entry_forbidden | 0
+<img src="img/Schild2.jpg" alt="Schild 2" width="200"/> | pedestrians | 0.05
+<img src="img/Schild3.jpg" alt="Schild 3" width="200"/> | turn_right | 0
+<img src="img/Schild4.jpg" alt="Schild 4" width="200"/> | main_road | 0.11
+<img src="img/Schild5.jpg" alt="Schild 5" width="200"/> | turn_left | 0
+<img src="img/Schild6.jpg" alt="Schild 6" width="200"/> | warning | 0.05
+<img src="img/Schild7.jpg" alt="Schild 7" width="200"/> | no_parking | 0
+<img src="img/Schild8.jpg" alt="Schild 8" width="200"/> | bus_stop | 0
+<img src="img/Schild9.jpg" alt="Schild 9" width="200"/> | crossing | 0.05
+<img src="img/Schild10.jpg" alt="Schild 10" width="200"/> | slippery | 0.05
+<img src="img/Schild11.jpg" alt="Schild 11" width="200"/> | entry_road_closed | 0
 
 ### Funktionsweise
 Um in einem Foto ein Verkehrsschild erkennen zu können werden *Haar Cascaden* verwendet. Dies sind XML-Dateien, auch "Cascaden" genannt, welche Daten zur Mustererkennung beinhalten. Der Algorithmus zur Erzeugung dieser Cascaden wird auch Viola-Jones-Methode genannt ([siehe Wikipedia](https://de.wikipedia.org/wiki/Viola-Jones-Methode)).
